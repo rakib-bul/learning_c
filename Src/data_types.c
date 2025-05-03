@@ -8,8 +8,18 @@ int main(){
     float c = 3.14159265358979323846; // 4 bytes 32 bit of precision 6-17 digit %f
     double d = 3.14159265358979323846; // 8 bytes 64 bit of precision 15-16 digits %lf
 
-    bool e = true; //1 byte true or false
+    bool e = true; //1 byte true or false requires stdbool.h
 
+    bool is_student = true;
+
+    if (is_student == true)
+    {
+        printf("You are a student \n");
+    }
+    else 
+    {
+        printf("Go and study \n");
+    }
 
 
 
