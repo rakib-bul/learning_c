@@ -23,3 +23,6 @@ This repository documents my progress as I learn C programming through:
 - Foundation for OS/devops/embedded systems  
 - Deepens understanding of how computers work  
 - Improves low-level programming skills  
+
+
+* Feel free to review the codes *
