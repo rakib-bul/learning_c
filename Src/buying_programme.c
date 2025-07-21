@@ -21,7 +21,7 @@ int main(){
     //Menu
     printf("Hi, Welcome to Benga Shop \n");
     printf("What do you want to buy?\n");
-    printf("Sl --- Item --- Price -- Qyty \n");
+    printf("Sl --- Item --- Price -- Qty \n");
     printf("1.     %s --     %d -- %d \n", item_name[0], pizza_price, pizza_qty);
     printf("2.     %s --     %d -- %d \n", item_name[1], chips_price, chips_qty);
     printf("3.     %s --     %d -- %d \n", item_name[2], coca_price, coca_qty);
@@ -32,15 +32,15 @@ int main(){
 
 
     // Price Calculation
-    if (choice == 1){
+    if (choice == 1 && buy_qty <= pizza_qty){
         total = pizza_price * buy_qty;
         printf("The total price is %d$ \n", total);
     }
-    else if (choice == 2){
+    else if (choice == 2 && buy_qty <= chips_qty){
         total = chips_price * buy_qty;
         printf("The total price is %d$ \n", total);
     }
-    else if (choice == 3){
+    else if (choice == 3 && buy_qty <= coca_qty){
         total = coca_price * buy_qty;
         printf("The total price is %d$ \n", total);
     }
