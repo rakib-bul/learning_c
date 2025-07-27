@@ -2,28 +2,38 @@
 #include <string.h>
 
 
+typedef struct{
+    char name[20];
+    char number[20];
+} person;
+
+
 int main(void){
-    char user_name[15];
-    char names[3][15] = {"Rakib", "Jami", "Rohan"};
-    char numbers[3][20] = {"+8801783924660", "+8801983590359", "+8801983838382"};
 
-    printf("Enter Name: ");
+    char name_input[20];
+    person people[3];
 
-    scanf("%14s", user_name);
+    strcpy(people[0].name , "Jami");
+    strcpy(people[0].number , "+8801783924660");
 
-    int found = 0;
+    strcpy(people[1].name, "Benga");
+    strcpy(people[1].number, "0176969696");
+
+    strcpy(people[2].name,  "Kai");
+    strcpy(people[2].number, "+178943898");
+
+    printf("Enter name : ");
+    scanf("%s", name_input);
 
     for (int i = 0; i < 3; i++){
-        if (strcmp(user_name, names[i]) == 0){
-            printf("Phone number : %s \n", numbers[i]);
-            found = 1;
-            break;
+        if (strcmp(people[i].name, name_input)== 0){
+            printf("Found %s \n", people[i].number);
+
+            return 0;
         }
+
+        printf("Not Found \n");
+        return 0;
     }
 
-    if (!found){
-        printf("Name not found \n");
-    }
-
-    return 0;
 }
