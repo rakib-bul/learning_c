@@ -24,6 +24,7 @@ int main(){
         if (random_number == guess){
             printf("You Guessed correct number. \n");
             printf("Your guessed number is %d \n", guess);
+            printf("Memory size of the number is %zu \n",sizeof(guess));
 
             return 0;
         }
