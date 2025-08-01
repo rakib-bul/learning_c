@@ -22,28 +22,33 @@ int main(){
     scanf("%d", &player_input);
 
 
-    for (int i = 0; i < 1; i++){
 
-        if(player_input >= 1 && player_input <= 3){
-            printf("%s\n", choice[player_input -1]);
-        }
-        else{
-            printf("Fuck you");
-            return 0;
-        }
-}
+    if(player_input >= 1 && player_input <= 3){
+        printf("%s\n", choice[player_input -1]);
+    }
+    else{
+        printf("Fuck you");
+        return 0;
+    }
 
     generate_computer_choice();
 
-    printf("Computer Choice = %s \n", choice[computer_choice -1 ]);
+    printf("Computer Choice = %s \n", choice[computer_choice]);
 
 
 
     //Game logic
-    if (player_input-1 == computer_choice-1){
+    if (player_input-1 == computer_choice){
         printf("Draw \n");
     }
-    else if((player_input == 1 && computer_choice == 3)||
+    else if((player_input == 1 && computer_choice == 2)||
+            (player_input == 2 && computer_choice == 0)||
+            (player_input == 3 && computer_choice == 1)){
+                printf("You win \n");
+            }
+    else{
+        printf("You lost \n");
+    }
 
 
 
