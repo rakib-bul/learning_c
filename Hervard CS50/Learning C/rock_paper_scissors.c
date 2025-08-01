@@ -53,6 +53,8 @@ int main(){
 
 
 }
+
+
 void generate_computer_choice(){
     srand(time(NULL));
     computer_choice = rand()%3;
