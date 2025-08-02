@@ -9,7 +9,7 @@ void signup();
 
 
 int main(){
-    
+
     int options;
     printf("Welcome to Log in & Sign Up system \n");
     printf("1 to open new account\n");
@@ -27,7 +27,7 @@ int main(){
     else{
         printf("Enter correct command\n");
     }
-    
+
 }
 
 
@@ -50,30 +50,32 @@ void login(){
 
 
     FILE *ftpr;
-    ftpr = fopen("/home/rakib/Projects/learning_c/Hervard CS50/Learning C/user_data.txt","w");
+    ftpr = fopen("user_data.txt","r");
 
     if(ftpr == NULL){
         printf("File not found. Check again.\n");
         return;
     }
 
-    while (fscanf(ftpr, "%s %s %s %s", file_username, file_password, file_firstname, file_lastname))
+    while (fscanf(ftpr, "%s %s %s %s", file_username, file_password, file_firstname, file_lastname) == 4)
     {
-        if(strcmp(file_username, username)== 0 || (file_password, password)==0){
+        if(strcmp(file_username, username)== 0 && (file_password, password )== 0 ){
             found = 1;
             break;
         }
-        
+
     }
     fclose(ftpr);
 
     if(found){
         printf("Logging in \n");
+        printf("%s\n", file_firstname);
+        printf("%s\n",file_lastname);
     }
     else{
         printf("Failed logging in. Check username or password");
     }
-    
+
 }
 
 void signup(){
@@ -93,7 +95,7 @@ void signup(){
     scanf("%19s", new_password);
 
     FILE *ftpr;
-    ftpr = fopen("/home/rakib/Projects/learning_c/Hervard CS50/Learning C/user_data.txt","w");
+    ftpr = fopen("user_data.txt","w");
 
     if(ftpr == NULL){
         printf("File not found. Check again.\n");
