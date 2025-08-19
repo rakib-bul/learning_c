@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include<math.h>
 
 
 int countdigit(int n);
@@ -9,28 +10,37 @@ int countdigit(int n);
 int main(){
     int number;
     int cracker;
+    int digits;
+    long long attempts = 0;
 
     srand(time(NULL));
 
     printf("Enter the value of N: ");
     scanf("%d", &number);
 
-    cracker = rand()%countdigit(number);
+    digits = countdigit(number);
 
-    if ( cracker != number){
-        while(cracker != number){
-            cracker = rand()%countdigit(number);
+    int lower = pow(10, digits-1);
+    int higher = pow(10, digits)-1;
 
-            printf("%d \n", cracker);
-        }
+    printf("Cracking the number.....");
+    clock_t start = clock();
+
+    do{
+        cracker = (rand()%(higher-lower+1))+lower;
+        attempts += 1;
+        printf("%d \n", cracker);
     }
-    else{
-        printf("Number cracked");
-    }
+    while(cracker != number);
 
+    clock_t end = clock();
+    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
 
+    printf("Number cracked %d \n", cracker);
+    printf("It took %lld attempts to crack \n", attempts);
+    printf("Time taken %.6f seconds \n", time_taken);
 
-    printf("The size of N is %d",countdigit(number));
+    return 0;
 }
 
 int countdigit(int n){
