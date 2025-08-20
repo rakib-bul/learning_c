@@ -5,15 +5,15 @@
 #include<windows.h>
 
 //Global Variables
-    char tree_name[3][10] = {"Oak", "Brich", "Maple"};
-    int cutting_xp = 10;
-    int axe_power = 10;
-    int axe_hp = 200;
-    int tree_hp = 50;
-    int tree_choice;
-    int cut_count = 0;
-    int inventory = {0,0,0};
-    int total_xp = 0;
+char tree_name[5][10] = {"Oak","Spruce", "Brich", "Maple","Acacia"};
+int cutting_xp = 10;
+int axe_power = 10;
+int axe_hp = 200;
+int tree_hp = 50;
+int tree_choice;
+int cut_count = 0;
+int inventory[5]= {0,0,0,0,0};
+int total_xp = 0;
 
 
 //Functions
@@ -24,18 +24,18 @@ int main(void){
     //Start
     printf("Welcome to Tree Cutting Simulator.\n");
     printf("Cut trees in the virtual world.\n");
-    for(int i = 0; i<3; i++){
+    for(int i = 0; i<5; i++){
         printf("%d. %s \n",i+1, tree_name[i]);
     }
 
 
     do{
-        printf("Select a tree to cut 1-3. \n");
+        printf("Select a tree to cut 1-5. \n");
 
         if(scanf("%d", &tree_choice) != 1){
             printf("Invalid Input. Please enter a number from 1-3\n");
         }
-        else if(tree_choice < 1 || tree_choice > 3){
+        else if(tree_choice < 1 || tree_choice > 5){
             printf("Invalid Input. Please enter a number from 1-3\n");
         }
         else{
@@ -53,7 +53,8 @@ int main(void){
 }
 
 void wood_cutting(){
-    while (axe_hp > 0){
+
+    while (axe_hp > 1 && tree_hp > 0){
         int current_hp = tree_hp;
         while(current_hp > 0 && axe_hp > 0){
             current_hp -= axe_power;
@@ -62,14 +63,33 @@ void wood_cutting(){
             printf("# ");
             Sleep(1000);
 
+
         } printf(" \n");
+        if(current_hp == 0){
+            int gained_xp = cut_count*cutting_xp;
+            total_xp += gained_xp;
+            inventory[tree_choice-1]+= 1;
 
-        int gained_xp = cut_count*cutting_xp;
-        total_xp += gained_xp;
+            printf("%d hits used to cut the tree\n", cut_count);
+            printf("Axe health = %d \n", axe_hp);
+            printf("You have gained %d XP\n", (gained_xp));
+            printf("Your total XP is %d \n", total_xp );
+            printf("%d %s logs in inventory.\n", inventory[tree_choice-1], tree_name[tree_choice-1]);
 
-        printf("%d hits used to cut the tree\n", cut_count);
-        printf("Axe health = %d \n", axe_hp);
-        printf("You have gained %d XP\n", (gained_xp));
-        printf("Your total XP is %d \n", total_xp );
+            cut_count = 0;
+
+            if(axe_hp < 0){
+                printf("Snap!! the axe broke!/n");
+                return;
+            }
+
+
+        }
+        else{
+            printf("Can not cut the tree \n");
+        }
+
+
+
     }
 }
