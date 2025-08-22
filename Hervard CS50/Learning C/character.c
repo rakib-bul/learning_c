@@ -1,21 +1,51 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <string.h>
 
-
-struct Player{
+struct Player {
     char player_name[50];
-    char gender[10];
+    char player_gender[10];
     char race[10];
     char player_class[20];
-
 };
 
-
-
-int main(void){
+int main(void) {
     struct Player p;
+    char classes[5][20] = {"Warrior", "Mage","Knight","Thief","Rouge"};
+    char gender[2][10] = {"Male", "Female"};
+    int gender_choice;
+    int class_choice;
 
-    printf("Enter player name >> ");
-    scanf("%s", &p.player_name);
-    printf("Welcome %s \n", p.player_name);
+    //Player Name
+    printf("Enter player name: ");
+    scanf("%49s", p.player_name);  // safe input
 
+    //Player Gender
+    printf("Choose your gender(1/2):\n");
+    for(int i=0; i<2; i++){
+        printf("%d. %s \n", i+1, gender[i]);
+    }
+    do{
+
+    }
+    scanf("%d", &gender_choice);
+    strcpy(p.player_gender, gender[gender_choice-1]);
+
+
+    //Player Class
+    printf("Choose your class(1-5): \n");
+    for(int i = 0; i<5; i++){
+        printf("%d. %s \n", i+1, classes[i]);
+    }
+    scanf("%d", &class_choice);
+    strcpy(p.player_class, classes[class_choice-1]);
+
+
+
+
+    printf("Welcome %s\n", p.player_name);
+    printf("Your gender is %s \n", p.player_gender);
+    printf("Class: %s\n", p.player_class);
+
+
+    return 0;
 }
