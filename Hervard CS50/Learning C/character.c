@@ -17,17 +17,25 @@ int main(void) {
 
     //Player Name
     printf("Enter player name: ");
-    scanf("%49s", p.player_name);  // safe input
+    scanf("%49s", p.player_name);
 
-    //Player Gender
+    //Player Gender Section
     printf("Choose your gender(1/2):\n");
     for(int i=0; i<2; i++){
         printf("%d. %s \n", i+1, gender[i]);
     }
     do{
-
-    }
-    scanf("%d", &gender_choice);
+        if (scanf("%d", & gender_choice) !=1)
+        {
+            printf("Select a vaild option.(1/2)\n");
+        }
+        else if(gender_choice < 1 || gender_choice > 2){
+            printf("Select an vaild option.(1/2)\n");
+        }
+        else{
+            break;
+        }
+    }while (1);
     strcpy(p.player_gender, gender[gender_choice-1]);
 
 
